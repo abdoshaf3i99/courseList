@@ -60,3 +60,11 @@ li > button:last-of-type {
 ul > form {
   margin: 15px 0;
 }
+p {
+  margin: 0;
+  text-align: center;
+  padding: 10px 0px;
+  background: #5555;
+  color: #46529f;
+  font-size: 20px;
+}

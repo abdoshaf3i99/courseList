@@ -12,11 +12,15 @@ class App extends Component {
     e.preventDefault();
     let current = this.state.current;
     let courses = this.state.courses;
-    courses.push({ name: current });
-    this.setState({
-      courses,
-      current: '',
-    });
+    if (current === '') {
+      return false;
+    } else {
+      courses.push({ name: current });
+      this.setState({
+        courses,
+        current: '',
+      });
+    }
   };
 
   //deleteCourse
@@ -45,17 +49,24 @@ class App extends Component {
   };
   render() {
     const { courses } = this.state;
-    const courseList = courses.map((courses, index) => {
-      return (
-        <CourseList
-          details={courses}
-          key={index}
-          deleteCourse={this.deleteCourse}
-          index={index}
-          editCourse={this.editCourse}
-        />
-      );
-    });
+    let length = courses.length;
+
+    const courseList = length ? (
+      courses.map((courses, index) => {
+        return (
+          <CourseList
+            details={courses}
+            key={index}
+            deleteCourse={this.deleteCourse}
+            index={index}
+            editCourse={this.editCourse}
+          />
+        );
+      })
+    ) : (
+      <p>there is no courses to show</p>
+    );
+
     return (
       <section className="App">
         <h2>Add Course</h2>
